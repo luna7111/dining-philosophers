@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/21 23:49:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 00:19:51 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 01:05:54 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 //memory allocation
 # include <sys/time.h>
 //gettimeofday
-# include <phtread.h>
+# include <pthread.h>
 //multithreading
 
 # define INFINITE -1
@@ -56,6 +56,7 @@ typedef struct s_table
 	pthread_t		*philo_threads;
 	pthread_t		referee;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*state_locks;
 }	t_table;
 
 #endif
