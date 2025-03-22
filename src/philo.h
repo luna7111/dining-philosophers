@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/21 23:49:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 01:05:54 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 02:32:26 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,13 @@ typedef struct s_table
 	int				philo_nb;
 	t_philo			*philos;
 	pthread_t		*philo_threads;
-	pthread_t		referee;
+	pthread_t		referee_thread;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*state_locks;
 }	t_table;
 
+int		ft_atoi(char *str);
+
+void	*philo_routine(void *philo);
+void	*referee_routine(void *table);
 #endif
