@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 00:42:41 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 13:28:12 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 13:30:01 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int	init_philosophers(t_table *table)
 		table->philos[i].start_timestamp = table->start_timestamp;
 		table->philos[i].state = ALIVE;
 		table->philos[i].id = i + 1;
+		if (i % 2 == 0)
+			table->philos[i].laterality = RIGHT_HANDED;
+		else
+			table->philos[i].laterality = LEFT_HANDED;
 		table->philos[i].state_lock = &(table->state_locks[i]);
 		table->philos[i].right_fork = &(table->forks[i]);
 		if (i == table->philo_nb - 1)

@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/21 23:49:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 12:09:38 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 13:27:29 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define ALIVE 0
 # define DEAD 1
 # define FINISHED 2
+# define LEFT_HANDED 0
+# define RIGHT_HANDED 0
 
 typedef struct s_philo
 {
@@ -38,6 +40,7 @@ typedef struct s_philo
 	int				id;
 	int				philo_nb;
 	int				state;
+	int				laterality;
 	long long		ate;
 	long long		start_timestamp;
 	pthread_mutex_t	*state_lock;
