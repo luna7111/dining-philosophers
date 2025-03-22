@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 00:42:41 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 11:52:04 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 12:03:29 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	init_philosophers(t_table *table)
 		table->philos[i].time_to_die = table->time_to_die;
 		table->philos[i].iterations = table->iterations;
 		table->philos[i].philo_nb = table->philo_nb;
+		table->philos[i].start_timestamp = table->start_timestamp;
 		table->philos[i].state = ALIVE;
 		table->philos[i].id = i + 1;
 		table->philos[i].state_lock = &(table->state_locks[i]);
