@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/21 23:49:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 02:32:26 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 11:51:27 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_table
 	int				time_to_die;
 	int				iterations;
 	int				philo_nb;
+	long long		start_timestamp;
 	t_philo			*philos;
 	pthread_t		*philo_threads;
 	pthread_t		referee_thread;

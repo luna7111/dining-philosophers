@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 00:42:41 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 02:43:41 by ldel-val          ``                     */
+/*   Updated: 2025/03/22 11:52:04 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int argn, char **argv)
 		table.iterations = ft_atoi(argv[5]);
 	else
 		table.iterations = INFINITE;
+	table.start_timestamp = get_current_time();
 	init_mutexes(&table);
 	init_philosophers(&table);
 	init_threads(&table);
