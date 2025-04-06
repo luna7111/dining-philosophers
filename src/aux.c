@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:09:15 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/06 22:38:50 by ldel-val          ``                     */
+/*   Updated: 2025/04/06 23:48:10 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ long long	get_current_time(void)
 long long	get_passed_time(t_philo *philo)
 {
 	return (get_current_time() - philo->start_timestamp);
+}
+
+int	is_philo_dead(t_philo *philo)
+{
+	if (philo->iterations != 0)
+		return (get_current_time() - philo->ate >= philo->time_to_die);
+	else
+		return (0);
 }
 
 int	ft_atoi(char *str)

@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:57:38 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/06 22:37:33 by ldel-val          ``                     */
+/*   Updated: 2025/04/06 23:50:14 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (philo_check_state(philo) == ALIVE)
+	while (philo_check_state(philo) == ALIVE && philo->iterations != 0)
 	{
 		if (philo->laterality == LEFT_HANDED)
 		{
@@ -33,6 +33,8 @@ void	*philo_routine(void *arg)
 		leave_forks(philo);
 		eslip(philo);
 		think(philo);
+		if (philo->iterations > 0)
+			philo->iterations--;
 	}
 	return (NULL);
 }
@@ -65,10 +67,11 @@ void	*referee_routine(void *arg)
 			pthread_mutex_lock(table->philos[i].state_lock);
 			if (get_current_time() - table->philos[i].ate >= table->time_to_die)
 			{
+				if (table->philos[i].iterations != 0)
+					printf("%lld %d died\n", get_passed_time(&table->philos[i]),
+						table->philos[i].id);
 				pthread_mutex_unlock(table->philos[i].state_lock);
 				commit_genocide(table);
-				printf("%lld %d died\n", get_passed_time(&table->philos[i]),
-					table->philos[i].id);
 				return (NULL);
 			}
 			else
