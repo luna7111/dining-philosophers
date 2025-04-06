@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/21 23:49:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/03/22 13:27:29 by ldel-val          ``                     */
+/*   Updated: 2025/04/06 22:38:17 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define DEAD 1
 # define FINISHED 2
 # define LEFT_HANDED 0
-# define RIGHT_HANDED 0
+# define RIGHT_HANDED 1
 
 typedef struct s_philo
 {
@@ -43,6 +43,7 @@ typedef struct s_philo
 	int				laterality;
 	long long		ate;
 	long long		start_timestamp;
+	pthread_mutex_t	*print_lock;
 	pthread_mutex_t	*state_lock;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
@@ -59,11 +60,21 @@ typedef struct s_table
 	t_philo			*philos;
 	pthread_t		*philo_threads;
 	pthread_t		referee_thread;
+	pthread_mutex_t	*print_lock;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*state_locks;
 }	t_table;
 
+int			philo_check_state(t_philo *philo);
+void		eat(t_philo	*philo);
+void		eslip(t_philo	*philo);
+void		think(t_philo	*philo);
+void		take_left_fork(t_philo *philo);
+void		take_right_fork(t_philo *philo);
+void		leave_forks(t_philo *philo);
+
 long long	get_current_time(void);
+long long	get_passed_time(t_philo *philo);
 int			ft_atoi(char *str);
 
 void		*philo_routine(void *philo);
