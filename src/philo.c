@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    _.._  .           .     */
-/*   philo.c                                        .' .-'`        *          */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                 /  /       +        *      */
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 00:42:41 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/06 22:49:12 by ldel-val          ``                     */
+/*   Updated: 2025/04/07 18:32:43 by ldel-val         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	init_philosophers(t_table *table)
 			table->philos[i].laterality = RIGHT_HANDED;
 		table->philos[i].state_lock = &(table->state_locks[i]);
 		table->philos[i].right_fork = &(table->forks[i]);
-		table->philos[i].left_fork = &(table->forks[0]);
-		if (i != table->philo_nb - 1)
-			table->philos[i].left_fork = &(table->forks[i + 1]);
+		table->philos[i].left_fork = &(table->forks[i - 1]);
+		if (i == 0)
+			table->philos[i].left_fork = &(table->forks[table->philo_nb - 1]);
 	}
 }
 

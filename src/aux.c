@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    _.._  .           .     */
-/*   aux.c                                          .' .-'`        *          */
+/*   aux.c                                              :+:      :+:    :+:   */
 /*                                                 /  /       +        *      */
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:09:15 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/07 17:13:28 by ldel-val          ``                     */
+/*   Updated: 2025/04/07 18:56:29 by ldel-val         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	wait(long long time, t_philo *philo)
 {
-	long long wait_start;
+	long long	wait_start;
 
 	wait_start = get_current_time();
 	while (get_current_time() < wait_start + time)
@@ -27,7 +27,6 @@ void	wait(long long time, t_philo *philo)
 		}
 		pthread_mutex_unlock(philo->state_lock);
 	}
-	(void)philo;
 }
 
 long long	get_current_time(void)

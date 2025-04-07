@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    _.._  .           .     */
-/*   fork_actions.c                                 .' .-'`        *          */
+/*   fork_actions.c                                     :+:      :+:    :+:   */
 /*                                                 /  /       +        *      */
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/04/06 22:40:10 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/06 22:41:06 by ldel-val          ``                     */
+/*   Updated: 2025/04/07 18:50:22 by ldel-val         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ void	take_right_fork(t_philo *philo)
 
 void	leave_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
+	if (philo->laterality == LEFT_HANDED)
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
+	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    _.._  .           .     */
-/*   actions.c                                      .' .-'`        *          */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                 /  /       +        *      */
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/04/05 12:35:24 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/07 17:13:13 by ldel-val          ``                     */
+/*   Updated: 2025/04/07 17:51:06 by ldel-val         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	think(t_philo *philo)
 		printf("%lld %d is thinking\n", get_passed_time(philo), philo->id);
 		pthread_mutex_unlock(philo->print_lock);
 	}
-	if (philo->laterality == LEFT_HANDED)
+	if (philo->laterality == RIGHT_HANDED)
 		wait(1, philo);
 }
 
