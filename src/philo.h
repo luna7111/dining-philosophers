@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/21 23:49:19 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/06 23:43:55 by ldel-val          ``                     */
+/*   Updated: 2025/04/07 16:20:18 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		take_left_fork(t_philo *philo);
 void		take_right_fork(t_philo *philo);
 void		leave_forks(t_philo *philo);
 
+void		wait(long long time, t_philo *philo);
 long long	get_current_time(void);
 long long	get_passed_time(t_philo *philo);
 int			is_philo_dead(t_philo *philo);

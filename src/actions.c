@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/04/05 12:35:24 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/06 22:41:18 by ldel-val          ``                     */
+/*   Updated: 2025/04/07 17:13:13 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	think(t_philo *philo)
 		printf("%lld %d is thinking\n", get_passed_time(philo), philo->id);
 		pthread_mutex_unlock(philo->print_lock);
 	}
+	if (philo->laterality == LEFT_HANDED)
+		wait(1, philo);
 }
 
 void	eslip(t_philo *philo)
@@ -40,7 +42,7 @@ void	eslip(t_philo *philo)
 		printf("%lld %d is sleeping\n", get_passed_time(philo), philo->id);
 		pthread_mutex_unlock(philo->print_lock);
 	}
-	usleep(philo->time_to_sleep * 1000);
+	wait(philo->time_to_sleep, philo);
 }
 
 void	eat(t_philo *philo)
@@ -54,5 +56,5 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(philo->state_lock);
 	philo->ate = get_current_time();
 	pthread_mutex_unlock(philo->state_lock);
-	usleep(philo->time_to_eat * 1000);
+	wait(philo->time_to_eat, philo);
 }
