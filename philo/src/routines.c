@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:57:38 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/09 12:20:41 by ldel-val          ``                     */
+/*   Updated: 2025/04/09 16:22:37 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	*referee_routine(void *arg)
 	table = (t_table *)arg;
 	while (1)
 	{
-		i = 0;
-		while (i < table->philo_nb)
+		i = -1;
+		while (++i < table->philo_nb)
 		{
 			pthread_mutex_lock(table->philos[i].state_lock);
 			if (get_current_time() - table->philos[i].ate >= table->time_to_die)
@@ -87,12 +87,10 @@ void	*referee_routine(void *arg)
 						table->philos[i].id);
 				pthread_mutex_unlock(table->philos[i].state_lock);
 				commit_genocide(table);
-				pthread_mutex_unlock(table->print_lock);
-				return (NULL);
+				return (pthread_mutex_unlock(table->print_lock), NULL);
 			}
 			else
 				pthread_mutex_unlock(table->philos[i].state_lock);
-			i ++;
 		}
 	}
 	return (NULL);

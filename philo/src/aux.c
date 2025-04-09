@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:09:15 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/09 12:14:48 by ldel-val          ``                     */
+/*   Updated: 2025/04/09 16:33:55 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	is_philo_dead(t_philo *philo)
 
 int	ft_atoi(char *str)
 {
-	int	numb;
+	long	numb;
+	int		check;
 
 	while (*str == ' ')
 		str ++;
@@ -63,6 +64,9 @@ int	ft_atoi(char *str)
 		numb += *str - '0';
 		str ++;
 	}
+	check = numb;
+	if (check != numb)
+		exit (1);
 	if (*str == '\0')
 		return (numb);
 	else
