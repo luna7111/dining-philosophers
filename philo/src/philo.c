@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 00:42:41 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/09 11:39:32 by ldel-val          ``                     */
+/*   Updated: 2025/04/10 11:24:44 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,10 @@ int	main(int argn, char **argv)
 	t_table	table;
 
 	if (argn != 5 && argn != 6)
-		return (0);
+		return (printf("Wrong argument number\n"), 0);
 	table.philo_nb = ft_atoi(argv[1]);
+	if (table.philo_nb == 0)
+		return (printf("Simulation needs at least one philo\n"), 0);
 	table.time_to_die = ft_atoi(argv[2]);
 	table.time_to_eat = ft_atoi(argv[3]);
 	table.time_to_sleep = ft_atoi(argv[4]);

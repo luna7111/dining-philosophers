@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:09:15 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/09 16:33:55 by ldel-val          ``                     */
+/*   Updated: 2025/04/10 11:25:42 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ int	ft_atoi(char *str)
 		str ++;
 	}
 	check = numb;
-	if (check != numb)
-		exit (1);
-	if (*str == '\0')
+	if (*str == '\0' && check == numb)
 		return (numb);
 	else
+	{
+		printf("%s is not a valid number\n", str);
 		exit(1);
+	}
 }
