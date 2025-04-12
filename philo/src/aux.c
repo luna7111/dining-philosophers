@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:09:15 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/10 11:25:42 by ldel-val          ``                     */
+/*   Updated: 2025/04/12 17:50:56 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	wait(long long time, t_philo *philo)
 	wait_start = get_current_time();
 	while (get_current_time() < wait_start + time)
 	{
-		pthread_mutex_lock(philo->state_lock);
+		pthread_mutex_lock(philo->main_lock);
 		if (philo->state == DEAD)
 		{
-			pthread_mutex_unlock(philo->state_lock);
+			pthread_mutex_unlock(philo->main_lock);
 			return ;
 		}
-		pthread_mutex_unlock(philo->state_lock);
+		pthread_mutex_unlock(philo->main_lock);
 	}
 }
 

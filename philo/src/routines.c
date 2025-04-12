@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:57:38 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/09 16:22:37 by ldel-val          ``                     */
+/*   Updated: 2025/04/12 17:24:29 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	*lonely_philo(t_philo *philo)
 	printf("%lld 1 has taken a fork\n", get_passed_time(philo));
 	while (1)
 	{
-		pthread_mutex_lock(philo->state_lock);
+		pthread_mutex_lock(philo->main_lock);
 		if (philo->state == DEAD)
 			return (NULL);
-		pthread_mutex_unlock(philo->state_lock);
+		pthread_mutex_unlock(philo->main_lock);
 	}
 }
 
@@ -60,9 +60,7 @@ void	commit_genocide(t_table *table)
 	i = 0;
 	while (i < table->philo_nb)
 	{
-		pthread_mutex_lock(table->philos[i].state_lock);
 		table->philos[i].state = DEAD;
-		pthread_mutex_unlock(table->philos[i].state_lock);
 		i++;
 	}
 }
@@ -78,19 +76,17 @@ void	*referee_routine(void *arg)
 		i = -1;
 		while (++i < table->philo_nb)
 		{
-			pthread_mutex_lock(table->philos[i].state_lock);
+			pthread_mutex_lock(table->main_lock);
 			if (get_current_time() - table->philos[i].ate >= table->time_to_die)
 			{
-				pthread_mutex_lock(table->print_lock);
 				if (table->philos[i].iterations != 0)
 					printf("%lld %d died\n", get_passed_time(&table->philos[i]),
 						table->philos[i].id);
-				pthread_mutex_unlock(table->philos[i].state_lock);
 				commit_genocide(table);
-				return (pthread_mutex_unlock(table->print_lock), NULL);
+				return (pthread_mutex_unlock(table->main_lock), NULL);
 			}
 			else
-				pthread_mutex_unlock(table->philos[i].state_lock);
+				pthread_mutex_unlock(table->main_lock);
 		}
 	}
 	return (NULL);

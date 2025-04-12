@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 00:42:41 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/10 11:24:44 by ldel-val          ``                     */
+/*   Updated: 2025/04/12 17:57:39 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ void	init_mutexes(t_table *table)
 	int	i;
 
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->philo_nb);
-	table->state_locks = malloc(sizeof(pthread_mutex_t) * table->philo_nb);
-	table->print_lock = malloc(sizeof(pthread_mutex_t));
+	table->main_lock = malloc(sizeof(pthread_mutex_t));
 	i = 0;
-	pthread_mutex_init(table->print_lock, NULL);
+	pthread_mutex_init(table->main_lock, NULL);
 	while (i < table->philo_nb)
 	{
 		pthread_mutex_init(&table->forks[i], NULL);
-		pthread_mutex_init(&table->state_locks[i], NULL);
 		i++;
 	}
 }
@@ -46,11 +44,10 @@ void	init_philosophers(t_table *table)
 		table->philos[i].ate = table->start_timestamp;
 		table->philos[i].state = ALIVE;
 		table->philos[i].id = i + 1;
-		table->philos[i].print_lock = table->print_lock;
+		table->philos[i].main_lock = table->main_lock;
 		table->philos[i].laterality = LEFT_HANDED;
 		if (i % 2 == 0)
 			table->philos[i].laterality = RIGHT_HANDED;
-		table->philos[i].state_lock = &(table->state_locks[i]);
 		table->philos[i].right_fork = &(table->forks[i]);
 		table->philos[i].left_fork = &(table->forks[i - 1]);
 		if (i == 0)
@@ -103,7 +100,6 @@ int	main(int argn, char **argv)
 	free(table.philo_threads);
 	free(table.philos);
 	free(table.forks);
-	free(table.state_locks);
-	free(table.print_lock);
+	free(table.main_lock);
 	return (0);
 }
