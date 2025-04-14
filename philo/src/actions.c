@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/04/05 12:35:24 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/12 17:29:52 by ldel-val          ``                     */
+/*   Updated: 2025/04/12 18:38:15 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	philo_check_state(t_philo *philo)
 {
 	int	state;
 
+	pthread_mutex_lock(philo->main_lock);
 	state = philo->state;
+	pthread_mutex_unlock(philo->main_lock);
 	return (state);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ldel-val <ldel-val@student.42madrid.com>  |  |           *           */
 /*                                                 \  '.___.;       +         */
 /*   Created: 2025/03/22 01:09:15 by ldel-val       '._  _.'   .        .     */
-/*   Updated: 2025/04/12 17:50:56 by ldel-val          ``                     */
+/*   Updated: 2025/04/12 18:29:37 by ldel-val          ``                     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,20 @@ int	ft_atoi(char *str)
 {
 	long	numb;
 	int		check;
+	char	*nu;
 
-	while (*str == ' ')
-		str ++;
+	nu = str;
+	while (*nu == ' ')
+		nu ++;
 	numb = 0;
-	while (*str >= '0' && *str <= '9')
+	while (*nu >= '0' && *nu <= '9')
 	{
 		numb *= 10;
-		numb += *str - '0';
-		str ++;
+		numb += *nu - '0';
+		nu ++;
 	}
 	check = numb;
-	if (*str == '\0' && check == numb)
+	if (*nu == '\0' && check == numb)
 		return (numb);
 	else
 	{
